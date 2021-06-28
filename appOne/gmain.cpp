@@ -15,7 +15,13 @@ void gmain() {
         stroke(128);
         mathArrow(0, 0, x, y);
         stroke(255, 255, 200);
-        mathArc(0, angle, 0.5f);
+        if (angle > 0) {
+            mathArc(0, angle, 0.5f);
+        }
+        else {
+            mathArc(0, 180, 0.5f);
+            mathArc(180, 180 + angle, 0.5f);
+        }
 
         textSize(50);
         fill(160);
@@ -29,19 +35,17 @@ void gmain() {
         text((let)"asin(y/r)=" + asin(y / r), 0, 200);
         text((let)"acos(x/r)=" + acos(x / r), 0, 250);
         text((let)"atan(y/x)=" + atan(y / x), 0, 300);
+        text((let)"angle=" + angle, 0, 350);
 
         fill(224, 225, 204);
-        if (x > 0 && y > 0) {
-            text((let)"É∆=" + asin(y / r), 0, 1000);
+        if (angle > 0) {
+            text((let)"É∆=" + angle, 0, 1000);
         }
-        else if (x < 0 && y > 0) {
-            text((let)"É∆=" + acos(x / r), 0, 1000);
-        }
-        else if (x < 0 && y < 0) {
-            text((let)"É∆=" + (180 + atan(y / x)), 0, 1000);
+        else if (angle == -180) {
+            text((let)"É∆=" + 180, 0, 1000);
         }
         else {
-            text((let)"É∆=" + (360 + atan(y / x)), 0, 1000);
+            text((let)"É∆=" + (360 + angle), 0, 1000);
         }
     }
 }
